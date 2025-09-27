@@ -23,6 +23,7 @@
             --beige-light: #F5F5DC;
             --beige-medium: #E6D5B8;
             --beige-dark: #D6C6A5;
+            --success: #4CAF50;
         }
         
         body {
@@ -46,6 +47,19 @@
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .brand-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.1"><path d="M20,20 L80,20 L80,80 L20,80 Z" fill="white" stroke="white" stroke-width="2"/></svg>');
+            z-index: 0;
         }
         
         .brand-container {
@@ -53,6 +67,8 @@
             flex-direction: column;
             align-items: center;
             gap: 10px;
+            position: relative;
+            z-index: 1;
         }
         
         .brand-name {
@@ -103,6 +119,7 @@
             background-position: center;
             border-radius: 4px;
             filter: brightness(1.2) contrast(1.2) saturate(1.3);
+            background-color: rgba(255, 255, 255, 0.2); /* Fallback color */
         }
         
         .header-content {
@@ -136,6 +153,12 @@
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
             margin-bottom: 25px;
             border-left: 4px solid var(--secondary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .content-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
         
         h2 {
@@ -145,6 +168,13 @@
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             font-weight: 600;
             font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            margin-right: 10px;
+            font-size: 1.3em;
         }
         
         p {
@@ -163,6 +193,18 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             font-size: 1rem;
             line-height: 1.5;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent), #E57C3D);
         }
         
         .course-details {
@@ -179,6 +221,18 @@
             text-align: center;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .price-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
         }
         
         .price-box:hover {
@@ -222,11 +276,42 @@
             cursor: pointer;
             width: 100%;
             max-width: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
         }
         
         .cta-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(210, 105, 30, 0.5);
+        }
+        
+        .cta-button:active::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
         }
         
         .reasons {
@@ -242,6 +327,18 @@
             border-radius: 8px;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .reason::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
         }
         
         .reason:hover {
@@ -285,6 +382,7 @@
         .contact-item:hover {
             background-color: rgba(255, 255, 255, 1);
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
         
         .contact-item i {
@@ -313,6 +411,34 @@
             font-weight: 600;
             font-size: 1.1rem;
             box-shadow: 0 3px 10px rgba(210, 105, 30, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .special-offer::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(30deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(30deg);
+            }
         }
         
         .quote {
@@ -326,6 +452,104 @@
             color: var(--dark);
             border-left: 4px solid var(--secondary);
             line-height: 1.5;
+            position: relative;
+        }
+        
+        .quote::before, .quote::after {
+            content: '"';
+            font-size: 2rem;
+            color: var(--primary);
+            opacity: 0.3;
+            position: absolute;
+        }
+        
+        .quote::before {
+            top: 5px;
+            left: 10px;
+        }
+        
+        .quote::after {
+            bottom: 5px;
+            right: 10px;
+        }
+        
+        .countdown {
+            text-align: center;
+            background: linear-gradient(135deg, var(--dark), #4E342E);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-weight: 600;
+            font-size: 1.2rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 12px;
+            border-radius: 5px;
+            min-width: 60px;
+        }
+        
+        .countdown-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .countdown-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+        
+        .testimonial {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 245, 220, 0.9) 100%);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--success);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        .testimonial-author {
+            text-align: right;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .benefits-list {
+            list-style-type: none;
+            margin: 20px 0;
+        }
+        
+        .benefits-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .benefits-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.2rem;
         }
         
         /* Desktop styles */
@@ -430,6 +654,15 @@
                 width: auto;
                 max-width: none;
             }
+            
+            .countdown-timer {
+                gap: 20px;
+            }
+            
+            .countdown-item {
+                min-width: 80px;
+                padding: 10px 15px;
+            }
         }
         
         @media (min-width: 992px) {
@@ -470,7 +703,7 @@
         </header>
         
         <section class="content-section">
-            <h2>पाऊस हवाच असतो...</h2>
+            <h2><i class="fas fa-cloud-rain"></i> पाऊस हवाच असतो...</h2>
             <p>पण जेव्हा तो आपल्या संसारावर कोसळतो, तेव्हा त्याचं रूप किती भयंकर असतं, हे फक्त त्यालाच कळतं — ज्याचं सगळं काही त्या पावसात वाहून जातं…</p>
             
             <p>सध्या महाराष्ट्रात अनेक शेतकरी कुटुंबं अशाच भयंकर परिस्थितीतून जात आहेत. घर नाही, कपडे नाहीत, खायला अन्न नाही… आणि डोळ्यांत फक्त एकच प्रश्न — "आता पुढे काय?"</p>
@@ -479,7 +712,7 @@
         </section>
         
         <section class="content-section">
-            <h2>आमचा निर्णय</h2>
+            <h2><i class="fas fa-hand-holding-heart"></i> आमचा निर्णय</h2>
             <p>म्हणूनच आम्ही घेतलाय एक मनापासूनचा निर्णय:</p>
             
             <div class="highlight">
@@ -488,6 +721,28 @@
             
             <div class="special-offer">
                 विशेष ऑफर: फक्त २ दिवसांसाठी!
+            </div>
+            
+            <div class="countdown">
+                <p>ऑफर संपण्यास बाकी:</p>
+                <div class="countdown-timer">
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="days">02</div>
+                        <div class="countdown-label">दिवस</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="hours">23</div>
+                        <div class="countdown-label">तास</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="minutes">59</div>
+                        <div class="countdown-label">मिनिटे</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="seconds">59</div>
+                        <div class="countdown-label">सेकंद</div>
+                    </div>
+                </div>
             </div>
             
             <div class="course-details">
@@ -510,7 +765,24 @@
         </section>
         
         <section class="content-section">
-            <h2>या निर्णयामागे दोन जिव्हाळ्याची कारणं</h2>
+            <h2><i class="fas fa-graduation-cap"></i> कोर्सचे फायदे</h2>
+            
+            <ul class="benefits-list">
+                <li>प्री-रेकॉर्डेड व्हिडिओ लेसन्स - तुमच्या सोयीनुसार शिका</li>
+                <li>३ महिन्यांचा संपूर्ण मास्टर कोर्स</li>
+                <li>आरी वर्क आणि फॅब्रिक पेंटिंग या दोन्ही कलांचा समावेश</li>
+                <li>अनुभवी शिक्षकांचे मार्गदर्शन</li>
+                <li>कोर्स पूर्ण झाल्यावर प्रमाणपत्र</li>
+            </ul>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"हा कोर्स केल्याने मला नवीन कौशल्य शिकायला मिळाले आणि आता मी स्वतःचे छोटे व्यवसाय सुरू करू शकते. खूप छान अनुभव होता!"</p>
+                <p class="testimonial-author">- सुनंदा पाटील, औरंगाबाद</p>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <h2><i class="fas fa-heart"></i> या निर्णयामागे दोन जिव्हाळ्याची कारणं</h2>
             
             <div class="reasons">
                 <div class="reason">
@@ -537,7 +809,7 @@
         </section>
         
         <section class="content-section" id="enroll">
-            <h2>नोंदणी करा</h2>
+            <h2><i class="fas fa-edit"></i> नोंदणी करा</h2>
             <p>या विशेष ऑफरसाठी आत्ताच नोंदणी करा आणि शेतकरी कुटुंबांना मदत करण्यासाठी आपला सहभाग द्या.</p>
             
             <div style="text-align: center; margin-top: 25px;">
@@ -558,5 +830,56 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const now = new Date();
+            const targetDate = new Date(now);
+            targetDate.setDate(now.getDate() + 2); // Set to 2 days from now
+            targetDate.setHours(23, 59, 59, 0); // Set to end of day
+            
+            const timeDifference = targetDate - now;
+            
+            if (timeDifference <= 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+            
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
+        
+        // Add ripple effect to CTA buttons
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const x = e.clientX - e.target.getBoundingClientRect().left;
+                const y = e.clientY - e.target.getBoundingClientRect().top;
+                
+                const ripple = document.createElement('span');
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+    </script>
 </body>
 </html>
